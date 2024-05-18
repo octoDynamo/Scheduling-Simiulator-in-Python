@@ -18,13 +18,18 @@ This is a Python application that demonstrates various process scheduling algori
 1. Install Python if you haven't already. You can download it from [python.org](https://www.python.org/downloads/).
 
 2. Clone this repository:
-'git clone https://github.com/octoDynamo/Scheduling-Simiulator-in-Python'
-
+'''
+git clone https://github.com/octoDynamo/Scheduling-Simiulator-in-Python
+'''
 3. Navigate to the project directory:
-'cd Scheduling-Simiulator-in-Python'
+'''
+cd Scheduling-Simiulator-in-Python
+'''
 
 4. Run the application:
-'python app.py'
+'''
+python app.py
+'''
 
 5. Select a configuration file containing process data when prompted.
 
@@ -42,9 +47,11 @@ The configuration file should be a plain text file with each line representing a
 - Burst time
 
 Example:
-'Process1 0 5
+'''
+Process1 0 5
 Process2 2 3
-Process3 4 7'
+Process3 4 7
+'''
 
 ## Requirements
 
