@@ -193,17 +193,14 @@ algorithm_choice.set(1)
 fcfs_radio = tk.Radiobutton(middle_frame, text="FCFS", variable=algorithm_choice, value=1)
 fcfs_radio.grid(row=1, column=0, sticky="w")
 
-sjf_radio = tk.Radiobutton(middle_frame, text="SJF (Shortest Job First)", variable=algorithm_choice, value=2)
+sjf_radio = tk.Radiobutton(middle_frame, text="SJF(Shortest Job First)", variable=algorithm_choice, value=2)
 sjf_radio.grid(row=1, column=1, sticky="w")
 
-rr_radio = tk.Radiobutton(middle_frame, text="Round-Robin", variable=algorithm_choice, value=3)
+rr_radio = tk.Radiobutton(middle_frame, text="Round-Robin, Quantum :", variable=algorithm_choice, value=3)
 rr_radio.grid(row=1, column=2, sticky="w")
 
-quantum_label = tk.Label(middle_frame, text="Quantum :")
-quantum_label.grid(row=1, column=3, sticky="w")
-
 quantum_entry = tk.Entry(middle_frame, width=10)
-quantum_entry.grid(row=1, column=4, padx=5, pady=5)
+quantum_entry.grid(row=2, column=2, padx=5, pady=5)
 
 priority_radio = tk.Radiobutton(middle_frame, text="Priorité", variable=algorithm_choice, value=4)
 priority_radio.grid(row=1, column=5, sticky="w")
