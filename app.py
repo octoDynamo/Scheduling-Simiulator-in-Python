@@ -40,8 +40,24 @@ def fcfs_scheduling(processes):
     return result
 
 def sjf_scheduling(processes):
-    sorted_processes = sorted(processes, key=operator.attrgetter('arrival_time', 'burst_time'))
-    return fcfs_scheduling(sorted_processes)
+    processes = sorted(processes, key=lambda x: (x.arrival_time, x.burst_time))
+    time = 0
+    result = []
+    while processes:
+        # Get the processes that have arrived by the current time
+        available_processes = [p for p in processes if p.arrival_time <= time]
+        if available_processes:
+            # Select the process with the shortest burst time
+            shortest_process = min(available_processes, key=lambda x: x.burst_time)
+            processes.remove(shortest_process)
+            if shortest_process.arrival_time > time:
+                time = shortest_process.arrival_time
+            result.append((shortest_process.name, time, time + shortest_process.burst_time))
+            time += shortest_process.burst_time
+        else:
+            # If no process is available, move time forward
+            time = processes[0].arrival_time
+    return result
 
 def round_robin_scheduling(processes, quantum):
     remaining = [process.burst_time for process in processes]
@@ -63,8 +79,24 @@ def round_robin_scheduling(processes, quantum):
     return result
 
 def priority_scheduling(processes):
-    sorted_processes = sorted(processes, key=operator.attrgetter('arrival_time', 'priority'))
-    return fcfs_scheduling(sorted_processes)
+    processes = sorted(processes, key=lambda x: (x.arrival_time, x.priority))
+    time = 0
+    result = []
+    while processes:
+        # Get the processes that have arrived by the current time
+        available_processes = [p for p in processes if p.arrival_time <= time]
+        if available_processes:
+            # Select the process with the highest priority (lower number means higher priority)
+            highest_priority_process = min(available_processes, key=lambda x: x.priority)
+            processes.remove(highest_priority_process)
+            if highest_priority_process.arrival_time > time:
+                time = highest_priority_process.arrival_time
+            result.append((highest_priority_process.name, time, time + highest_priority_process.burst_time))
+            time += highest_priority_process.burst_time
+        else:
+            # If no process is available, move time forward
+            time = processes[0].arrival_time
+    return result
 
 def plot_gantt_chart(schedule):
     fig, gnt = plt.subplots()
