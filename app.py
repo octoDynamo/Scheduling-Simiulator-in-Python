@@ -163,43 +163,59 @@ def run_algorithm():
 root = tk.Tk()
 root.title("Ordonnancement des processus")
 
-file_label = tk.Label(root, text="Choisir un fichier de configuration:")
+# Frames
+top_frame = tk.Frame(root)
+top_frame.pack(padx=10, pady=10)
+
+middle_frame = tk.Frame(root)
+middle_frame.pack(padx=10, pady=10)
+
+bottom_frame = tk.Frame(root)
+bottom_frame.pack(padx=10, pady=10)
+
+# Top frame: File selection
+file_label = tk.Label(top_frame, text="Choisir un fichier de configuration:")
 file_label.grid(row=0, column=0, sticky="w")
 
-file_entry = tk.Entry(root, width=50)
+file_entry = tk.Entry(top_frame, width=50)
 file_entry.grid(row=0, column=1, padx=5, pady=5)
 
-file_button = tk.Button(root, text="Parcourir", command=choose_file)
+file_button = tk.Button(top_frame, text="Parcourir", command=choose_file)
 file_button.grid(row=0, column=2, padx=5, pady=5)
 
-algorithm_label = tk.Label(root, text="Choisir un algorithme:")
-algorithm_label.grid(row=1, column=0, sticky="w")
+# Middle frame: Algorithm selection
+algorithm_label = tk.Label(middle_frame, text="Choisir un algorithme:")
+algorithm_label.grid(row=0, column=0, sticky="w")
 
 algorithm_choice = tk.IntVar()
 algorithm_choice.set(1)
 
-fcfs_radio = tk.Radiobutton(root, text="FCFS", variable=algorithm_choice, value=1)
-fcfs_radio.grid(row=1, column=1, sticky="w")
+fcfs_radio = tk.Radiobutton(middle_frame, text="FCFS", variable=algorithm_choice, value=1)
+fcfs_radio.grid(row=1, column=0, sticky="w")
 
-sjf_radio = tk.Radiobutton(root, text="SJF (Shortest Job First)", variable=algorithm_choice, value=2)
-sjf_radio.grid(row=2, column=1, sticky="w")
+sjf_radio = tk.Radiobutton(middle_frame, text="SJF (Shortest Job First)", variable=algorithm_choice, value=2)
+sjf_radio.grid(row=1, column=1, sticky="w")
 
-rr_radio = tk.Radiobutton(root, text="Round-Robin", variable=algorithm_choice, value=3)
-rr_radio.grid(row=3, column=1, sticky="w")
+rr_radio = tk.Radiobutton(middle_frame, text="Round-Robin", variable=algorithm_choice, value=3)
+rr_radio.grid(row=1, column=2, sticky="w")
 
-quantum_label = tk.Label(root, text="Quantum :")
-quantum_label.grid(row=3, column=2, sticky="w")
+quantum_label = tk.Label(middle_frame, text="Quantum :")
+quantum_label.grid(row=1, column=3, sticky="w")
 
-quantum_entry = tk.Entry(root, width=10)
-quantum_entry.grid(row=3, column=3, padx=5, pady=5)
+quantum_entry = tk.Entry(middle_frame, width=10)
+quantum_entry.grid(row=1, column=4, padx=5, pady=5)
 
-priority_radio = tk.Radiobutton(root, text="Priorité", variable=algorithm_choice, value=4)
-priority_radio.grid(row=4, column=1, sticky="w")
+priority_radio = tk.Radiobutton(middle_frame, text="Priorité", variable=algorithm_choice, value=4)
+priority_radio.grid(row=1, column=5, sticky="w")
 
-run_button = tk.Button(root, text="Exécuter", command=run_algorithm)
-run_button.grid(row=5, column=1, padx=5, pady=10)
+# Bottom frame: Run and result
+run_button = tk.Button(bottom_frame, text="Exécuter", command=run_algorithm)
+run_button.grid(row=0, column=0, padx=5, pady=10)
 
-result_text = tk.Text(root, height=10, width=60)
-result_text.grid(row=6, columnspan=3, padx=5, pady=5)
+result_label = tk.Label(bottom_frame, text="Résultats :")
+result_label.grid(row=1, column=0, sticky="w")
+
+result_text = tk.Text(bottom_frame, height=10, width=80)
+result_text.grid(row=2, columnspan=6, padx=5, pady=5)
 
 root.mainloop()
